@@ -16,7 +16,14 @@ class PostController extends Controller
     public function show($id)
     {
         $data = Post::find($id);
-        return response()->json($data, 200);
+        return response()->json($data, 200); // 200 untuk code GET, HEAD, PUT or POST, TRACE
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->all();
+        $response = Post::create($data);
+        return response()->json($response, 201); // 201 untuk code created
     }
 
 }
